@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-6 w-full text-sm md:text-base">
+    <div class="flex flex-col gap-7 w-full rounded-xl p-10 bg-white" *ngFor="let post of displayedData">
+        <span class="flex flex-col justify-between md:flex-row">
+            <p class="text-details_card_number font-bold w-fit text-base md:text-md">{{post.message_title}}</p>
+            <p class="flex flex-nowrap w-fit text-base">Posted {{post.created_at | date:'d MMM y'}}</p>
+        </span>
+        <span class="flex h-full w-full justify-between flex-col gap-2 md:flex-row md:gap-0" [ngClass]="{'md:flex-col':!shorten[post.id]}">
+            <p class="text-details_card_text w-fit">{{post.body | short:shorten[post.id]}}</p>
+            <button class="text-edit_text active:text-header_active_text text-base self-end w-fit" [ngClass]="{'md:flex-col':!shorten[post.id]}" (click)="toggleContent(post.id)">{{showText}}</button>
+       </span>
+    </div>
+    <div *ngIf="displayedData?.length === 0 && !showSpinner">
+        <p class="font-semibold italic ml-10">{{noRecords}}</p>
+    </div>
+    <div *ngIf="showSpinner">
+        <app-spinner [text]="'Loading'"></app-spinner>
+    </div>
+</div>

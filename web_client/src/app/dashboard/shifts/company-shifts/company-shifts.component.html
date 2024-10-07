@@ -1,0 +1,47 @@
+<div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+    <span class="w-full p-3 text-sm flex justify-between">
+        <input type="p-2 rounded-lg" placeholder="Search here" class="outline-header_text text-header_text" [(ngModel)]="searchString" (keyup)="filter()" (keydown)="filter()">
+        <input type="date" class="outline-header_text text-header_text" placeholder="mm/dd/yyyy" (change)="filterByDate($event)">
+    </span>
+    <table class="text-base">
+        <thead>
+            <tr class="">
+                <th class="text-start text-header_text border-b p-2">Role</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Start Date</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">End Date</th>
+                <th class="text-start text-header_text border-b p-2">Start Time</th>
+                <th class="text-start text-header_text border-b p-2">End Time</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Staff Needed</th>
+                <th class="text-start text-header_text border-b p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="gap-2">
+            <tr class="md-3" *ngFor="let shift of displayedData">
+                <td class="p-3 border-b border-1">{{shift.type}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{shift.start_date | date:"d MMM y"}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{shift.end_date | date:'d MMM y'}}</td>
+                <td class="p-3 border-b border-1 ">{{shift.start_time}}</td>
+                <td class="p-3 border-b border-1 ">{{shift.end_time}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{shift.number_of_workers}}</td>
+                <td class="border-b border-1" >
+                    <button class="rounded px-1 text-sm border border-primary-dark text-primary-dark bg-white active:bg-primary-dark active:text-white" (click)="details(shift.id)">Details</button>
+                </td>
+            </tr>
+            <tr *ngIf="displayedData.length === 0 && !showSpinner">
+               <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+            </tr>
+            <tr  *ngIf="showSpinner" class="p-5 text-center">
+                <td colspan="10" class="text-start p-5">
+                    <app-spinner [text]="'Loading'"></app-spinner>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <app-paginator
+        *ngIf="showPag"
+        [totalItems]="shifts.length"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)"
+    />
+</div>

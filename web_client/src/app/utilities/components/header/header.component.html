@@ -1,0 +1,65 @@
+<div class="flex w-full h-fit items-center justify-between p-2 relative">
+    <div class="flex flex-row w-full h-fit justify-between items-center">
+        <img src="../../../assets/logo.png" alt="LOGO" class="w-24 md:hidden md:w-40">
+        <span class="text-credentials_header text-lg hidden md:inline">{{user?.first_name}} {{user?.last_name}}</span>
+        <span class="flex gap-5 items-center p-3">
+            <!-- <img src="../../.././../assets/settings.png" alt="settings" class="w-6 h-6 hover:cursor-pointer hidden md:block">
+            <img src="../../../../assets/notifications.png" alt="Notifications" class="w-6 h-6 hover:cursor-pointer hidden md:block"> -->
+            <img src="../../../../assets/profile.avif" alt="pfp" class="w-10 h-10 rounded-full hover:cursor-pointer" (click)="navigate('profile/news/memos')">
+
+            <span id="menu-btn" class="md:hidden ham focus:outline-none flex" [ngClass]="{open:showMenu==true}" (click)="openToggle()">
+                <span class="ham-top"></span>
+                <span class="ham-middle"></span>
+                <span class="ham-bottom"></span>
+            </span>
+        </span>
+    </div>
+    <span class="flex-col gap-3 absolute top-20 left-0 w-full justify-center items-center bg-white p-3 drop-shadow-2xl z-10" [ngClass]="{'hidden transition-all ease-in-out':!showMenu,'flex':showMenu}">
+        <span class=" flex gap-2 p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('attendance/all')" (click)="navigate('attendance/all')"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+            <img src="../../../../assets/attendance.png" alt="Attendance" class="w-6 h-6">
+            <a>Attendance</a>
+        </span>
+        <span class="flex gap-2 p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('admins/assistant/all') || activeRoute('admins/assistant/active') || activeRoute('admins/assistant/inactive') || activeRoute('admins/client/all') || activeRoute('admins/client/active') || activeRoute('admins/client/inactive') || activeRoute('admins/branch/all') || activeRoute('admins/branch/active') || activeRoute('admins/branch/inactive') || activeRoute('admins/building/all') || activeRoute('admins/building/active') || activeRoute('admins/building/inactive')"  (click)="navigate('admins')"  *ngIf="user?.is_organizationadmin || user?.is_branchadmin || user?.is_assistant_superadmin || user?.is_superuser">
+            <img src="../../../../assets/admins.png" alt="Dashboard" class="w-6 h-6">
+            <a class="">Admins</a>
+        </span>
+        <span class="flex gap-2 p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('shifts/company-shifts')" (click)="navigate('shifts/company-shifts')"  *ngIf="user?.is_organizationadmin || user?.is_branchadmin">
+            <img src="../../../../assets/shifts.png" alt="Shifts" class="w-6 h-6">
+            <a>Shifts</a>
+        </span>
+        <!-- <span class="flex gap-2 p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('payments')" (click)="navigate('payments')">
+            <img src="../../../../assets/payment.png" alt="Shifts" class="w-6 h-6">
+            <a>Payments</a>
+        </span> -->
+        <span class="flex gap-2 p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('organizations/all') || activeRoute('organizations/active') || activeRoute('organizations/inactive')" (click)="navigate('organizations/all')"  *ngIf="user?.is_assistant_superadmin || user?.is_superuser">
+            <img src="../../../../assets/companies.png" alt="Clients" class="w-6 h-6">
+            <a>Clients</a>
+        </span>
+        <span class="gap-2 flex p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('staff/all-staff') || activeRoute('staff/on-leave') || activeRoute('staff/active') || activeRoute('staff/suspended') || activeRoute('user') || activeRoute('user/leaves') || activeRoute('user/shifts')" (click)="navigate('staff/all-staff')"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+            <img src="../../../../assets/staff.png" alt="Staff" class="w-6 h-6">
+            <a>Staff</a>
+        </span>
+        <span class="flex gap-2 p-2 font-md w-full border-b border-primary-dark text-center" [class.active]="activeRoute('leaves')" (click)="navigate('leaves/requests/pending')"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+            <img src="../../../../assets/leave.png" alt="Leaves" class="w-6 h-6">
+            <a>Leaves</a>
+        </span>
+        <span class="flex gap-2 p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('news/news') || activeRoute('news/memos')" (click)="navigate('news/news')"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+            <img src="../../../../assets/news.png" alt="News" class="w-6 h-6">
+            <a>News & Memos</a>
+        </span>
+
+        <!-- <span class="gap-2 flex p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('chatroom')" (click)="navigate('chatroom')">
+            <img src="../../../../assets/chatroom.png" alt="Chatroom" class="w-6 h-6">
+            <a>Chatroom</a>
+        </span>
+        <span class="gap-2 flex p-2 font-md w-full border-b border-primary-dark" [class.active]="activeRoute('analytics')" (click)="navigate('analytics')">
+            <img src="../../../../assets/analytics.png" alt="Chatroom" class="w-6 h-6">
+            <a>Analytics</a>
+        </span> -->
+
+        <span class="flex gap-2 p-2 font-md w-full justify-center" [class.active]="activeRoute('analytics')" (click)="navigate('')">
+            <img src="../../../../assets/logout_icon.png" alt="Analytics" class="w-6 h-6">
+            <a class="text-red-500">Log out</a>
+        </span>
+    </span>
+</div>

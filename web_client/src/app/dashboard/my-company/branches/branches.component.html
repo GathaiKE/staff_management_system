@@ -1,0 +1,73 @@
+<div class="flex flex-col w-full gap-10 text-sm md:text-base" *ngIf="branches">
+    <div class="flex flex-col bg-white rounded-2xl p-8 gap-5">
+        <span class="flex gap-3 w-full justify-between">
+            <input type="text" placeholder="Search here..." class="md:w-6/12 p-2 text-sm rounded-full md:text-base md:py-2 md:px-4" [(ngModel)]="searchString" (keydown)="filter()" (keyup)="filter()">
+            <button class="py-2 px-6 bg-primary-dark rounded-full text-white border border-primary-dark active:bg-white active:text-primary-dark text-base" (click)="openForm()">New Branch</button>
+        </span>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-start text-primary-dark border-b p-2">No</th>
+                    <th class="text-start text-primary-dark border-b p-2">Name</th>
+                    <th class="text-start text-primary-dark border-b p-2">Address</th>
+                    <th class="text-start text-primary-dark border-b p-2 hidden md:table-cell">Date Added</th>
+                    <th class="text-start text-primary-dark border-b p-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-base">
+                <tr class="mb-3" *ngFor="let b of displayedData">
+                    <td class="p-3 border-b border-1 ">{{b.branch_number}}</td>
+                    <td class="p-3 border-b border-1 ">{{b.name}}</td>
+                    <td class="p-3 border-b border-1 ">{{b.location}}</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">{{b.created_at | date:"d MMM y"}}</td>
+                    <td class="p-3 border-b border-1 flex flex-row flex-nowrap gap-2">
+                        <button
+                            class="rounded px-1 text-sm border border-primary-dark text-primary-dark bg-white active:bg-primary-dark active:text-white"
+                            (click)="showUpdateBranch(b)">Edit</button>
+                        <!-- <button
+                        class="rounded px-1 text-sm border border-primary-dark text-white bg-primary-dark active:bg-white active:text-primary-dark"
+                        (click)="deleteBranch(b.id)">Del</button> -->
+                    </td>
+                </tr>
+                <tr *ngIf="displayedData.length === 0 && !showSpinner">
+                   <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+                </tr>
+                <tr  *ngIf="showSpinner" class="p-5 text-center">
+                    <td colspan="10" class="text-start p-5">
+                        <app-spinner [text]="'Loading'"></app-spinner>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <app-paginator *ngIf="showPag" [totalItems]="branches.length" [pageSize]="pageSize"
+                [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+    </div>
+</div>
+
+
+
+<app-dual-row-form
+    *ngIf="showForm"
+    [title]="'Register Branch'"
+    [size]="'fit'"
+    [abort]="'Cancel'"
+    [submit]="'Register'"
+    (closeEvent)="close()"
+    (formValue)="regiterBranch($event)"
+    [formConfig]="formConfig"
+    [formTemplate]="registerBranchForm"
+>
+</app-dual-row-form>
+
+<app-dual-row-form
+    *ngIf="showUpdateForm"
+    [title]="'Update Branch'"
+    [size]="'fit'"
+    [abort]="'Cancel'"
+    [submit]="'Update'"
+    (closeEvent)="closeUpdateForm()"
+    (formValue)="updateBranch($event)"
+    [formConfig]="formConfig"
+    [formTemplate]="updateBranchForm"
+>
+</app-dual-row-form>

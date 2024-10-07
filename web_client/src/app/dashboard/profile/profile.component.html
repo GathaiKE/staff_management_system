@@ -1,0 +1,64 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen" *ngIf="user">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light md:p-7">
+            <span class="w-full h-fit items-center rounded-lg bg-white flex flex-col gap-10 md:flex-row md:p-6">
+                <span class="items-center w-fit flex flex-col gap-3 p-2 md:p-0">
+                   <span class="flex relative">
+                        <img src="../../../assets/defaultPfp.png" alt="News"class="w-24 h-24 md:w-28 md:h-fit md:rounded-lg">
+                        <!-- <img src="../../../assets/stylus_pen.png" alt="edit" class="w-8 h-8 md:w-5 md:h-5 self-end absolute right-1 -bottom-2 md:-bottom-0 md:-right-3 hover:cursor-pointer"> -->
+                   </span>
+                    <button class="text-edit_text flex text-base w-fit flex-nowrap self-start hover:cursor-pointer active:text-primary-dark md:self-center" (click)="changePassword()">Change Password</button>
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center text-sm md:text-base ">
+                    <span class="w-full p-3 md:w-fit md:-p-0 md:text-md self-start flex gap-10 md:gap-14">
+                        <span class="w-fit h-full flex flex-col">
+                            <span class="text-profile_header">Full Name</span>
+                            <span class="text-profile_sub">{{user.first_name}} {{user.middle_name}} {{user.last_name}}</span>
+                        </span>
+                        <span class="w-fit h-full flex flex-col">
+                            <span class="text-profile_header">Contact Number</span>
+                            <span class="text-profile_sub">+{{user.phone_number}}</span>
+                        </span>
+                        <span class="w-fit h-full hidden flex-col md:flex">
+                            <span class="text-profile_header">Email Address</span>
+                            <span class="text-profile_sub">{{user.email}}</span>
+                        </span>
+                    </span>
+                    <span class="w-full p-3 md:w-fit md:-p-0 md:text-md self-start flex gap-10 md:gap-14">
+                        <span class="w-fit h-full flex flex-col">
+                            <span class="text-profile_header">Staff Number</span>
+                            <span class="text-profile_sub">{{user.staff_number}}</span>
+                        </span>
+                        <span class="w-fit h-full flex flex-col">
+                            <span class="text-profile_header">Date Joined</span>
+                            <span class="text-profile_sub">{{user.date_joined | date:"d MMM y"}}</span>
+                        </span>
+                        <span class="w-fit h-fulll flex-col hidden md:flex">
+                            <span class="text-profile_header">Address</span>
+                            <span class="text-profile_sub">{{user.user_address}}</span>
+                        </span>
+                    </span>
+
+                    <span class="w-full p-3 md:w-fit md:-p-0 md:text-md self-start flex gap-10 md:gap-14 md:hidden">
+                        <span class="w-fit h-full flex flex-col">
+                            <span class="text-profile_header">Email Address</span>
+                            <span class="text-profile_sub">{{user.email}}</span>
+                        </span>
+                        <span class="w-fit h-full flex flex-col">
+                            <span class="text-profile_header">Address</span>
+                            <span class="text-profile_sub">{{user.user_address}}</span>
+                        </span>
+                    </span>
+                </span>
+            </span>
+            <ul class="w-full h-fit flex justify-evenly md:gap-2 border border-b-primary-light text-header_text text-sm md:justify-start">
+                <li class="p-2 cursor-pointer" [ngClass]="{'border-b-primary-dark border-b-4 text-primary-dark':activeRoute('profile/news/news') || activeRoute('profile/news/memos')}" (click)="navigate('profile/news/memos')">Company News</li>
+                <li class="p-2 cursor-pointer" [ngClass]="{'border-b-primary-dark border-b-4 text-primary-dark':activeRoute('profile/my-shifts')}" (click)="navigate('profile/my-shifts')">My Shifts</li>
+                <li class="p-2 cursor-pointer" [ngClass]="{'border-b-primary-dark border-b-4 text-primary-dark':activeRoute('profile/my-applications')}" (click)="navigate('profile/my-applications')">Leave Applications</li>
+            </ul>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

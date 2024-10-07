@@ -1,0 +1,25 @@
+<div class="login-container opacity-100 w-full h-screen" >
+    <div class="w-full h-full form-container flex flex-col items-center py-16 md:py-5 md:px-16">
+        <div class="flex flex-col w-fit justify-center self-center gap-16 px-3 md:gap-16 md:self-start">
+            <div class="flex w-full h-fit items-center justify-center">
+                <img src="../../../assets/logo.png" alt="LOGO" class="w-8/12">
+            </div>
+            <div class="flex flex-col gap-3 w-fit h-fit bg-white_bg py-8 px-16 rounded-2xl md:ml-10">
+                <span class="flex flex-col w-full gap-3">
+                    <span class=" text-lg text-welcome font-bold w-full flex justify-center md:text-xl">Password Reset</span>
+                    <span class="w-full text-base text-credentials_header flex justify-center">Enter your email and staff number</span>
+                </span>
+                <form action="submit" [formGroup]="detailsForm" class="flex flex-col gap-7">
+                    <span class="flex flex-col gap-7 text-credentials_header text-sm">
+                        <input type="text" placeholder="Enter email" class=" p-4 outline outline-credentials_header md:w-80" formControlName="user">
+                        <input type="text" placeholder="Enter Staff No." formControlName="password" class="p-4 outline outline-credentials_header md:w-80">
+                    </span>
+                    <button type="submit" class='text-white bg-primary-dark p-2 w-full rounded-lg border border-primary-dark active:text-primary-dark active:bg-white' (click)="navigate('new-password')">Continue</button>
+                </form>
+                <span>
+                    <span class="text-sm text-credentials_header cursor-pointer" (click)="navigate('')">Back to Login</span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

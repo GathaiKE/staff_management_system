@@ -1,0 +1,22 @@
+<div class="flex flex-col w-full gap-2">
+    <span class="text-welcome"> leave Requests</span>
+    <div class="flex flex-col gap-3 h-full w-full rounded-xl py-2">
+        <span class="text-base flex flex-row gap-3">
+            <span class="p-3 bg-white rounded-2xl w-32 flex flex-col gap-1 items-center border" (click)="navigate('leaves/requests/pending')" [ngClass]="{' border-header_text':activeRoute('leaves/requests/pending')}">
+                <p class="w-fit text-base text-header_text text-center">Pending <span class="hidden md:inline">Approval</span></p>
+                <p class='w-fit text-md font-bold text-center'>{{pending}}</p>
+            </span>
+            <span class="p-3 bg-white rounded-2xl w-32 flex flex-col gap-1 items-center border" [ngClass]="{' border-header_text':activeRoute('leaves/requests/approved')}" (click)="navigate('leaves/requests/approved')">
+                <p class="w-fit text-base text-header_text text-center"><span class="hidden md:inline">Total</span> Approved</p>
+                <p class='w-fit text-md font-bold text-center'>{{approved}}</p>
+            </span>
+            <span class="flex p-3 bg-white rounded-2xl w-32 flex-col gap-1 items-center border" (click)="navigate('leaves/requests/rejected')" [ngClass]="{' border-header_text':activeRoute('leaves/requests/rejected')}">
+                <p class="w-fit text-base text-header_text text-center">Rejected <span class="hidden md:inline">Leaves</span></p>
+                <p class='w-fit text-md font-bold text-center'>{{rejected}}</p>
+            </span>
+        </span>
+       <div class="w-full h-full">
+            <router-outlet></router-outlet>
+       </div>
+    </div>
+</div>

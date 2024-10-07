@@ -1,0 +1,183 @@
+{
+  "users": [
+    {
+      "name": "Alice",
+      "userNumber": 1,
+      "email": "alice@example.com",
+      "phone": "123-456-7890"
+    },
+    {
+      "name": "Bob",
+      "userNumber": 2,
+      "email": "bob@example.com",
+      "phone": "234-567-8901"
+    },
+    {
+      "name": "Charlie",
+      "userNumber": 3,
+      "email": "charlie@example.com",
+      "phone": "345-678-9012"
+    },
+    {
+      "name": "David",
+      "userNumber": 4,
+      "email": "david@example.com",
+      "phone": "456-789-0123"
+    },
+    {
+      "name": "Eve",
+      "userNumber": 5,
+      "email": "eve@example.com",
+      "phone": "567-890-1234"
+    },
+    {
+      "name": "Frank",
+      "userNumber": 6,
+      "email": "frank@example.com",
+      "phone": "678-901-2345"
+    },
+    {
+      "name": "Grace",
+      "userNumber": 7,
+      "email": "grace@example.com",
+      "phone": "789-012-3456"
+    },
+    {
+      "name": "Hannah",
+      "userNumber": 8,
+      "email": "hannah@example.com",
+      "phone": "890-123-4567"
+    },
+    {
+      "name": "Ian",
+      "userNumber": 9,
+      "email": "ian@example.com",
+      "phone": "901-234-5678"
+    },
+    {
+      "name": "Jane",
+      "userNumber": 10,
+      "email": "jane@example.com",
+      "phone": "012-345-6789"
+    }
+  ],
+  "shifts": [
+    {
+      "end_date": "2023-05-01",
+      "end_time": "16:00",
+      "number_of_workers": "11",
+      "start_date": "2023-05-01",
+      "start_time": "08:00",
+      "type": "Morning",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "type": "Evening",
+      "start_time": "16:00",
+      "start_date": "2023-05-01",
+      "number_of_workers": "8",
+      "end_time": "00:00",
+      "end_date": "2023-05-02"
+    },
+    {
+      "id": "3",
+      "type": "Night",
+      "start_time": "00:00",
+      "start_date": "2023-05-02",
+      "number_of_workers": "6",
+      "end_time": "08:00",
+      "end_date": "2023-05-02"
+    },
+    {
+      "id": "4",
+      "type": "Morning",
+      "start_time": "08:00",
+      "start_date": "2023-05-02",
+      "number_of_workers": "12",
+      "end_time": "16:00",
+      "end_date": "2023-05-02"
+    },
+    {
+      "id": "5",
+      "type": "Evening",
+      "start_time": "16:00",
+      "start_date": "2023-05-02",
+      "number_of_workers": "10",
+      "end_time": "00:00",
+      "end_date": "2023-05-03"
+    },
+    {
+      "id": "c1b0",
+      "end_date": "2024-12-31",
+      "end_time": "17:00",
+      "number_of_workers": "25",
+      "start_date": "2024-01-01",
+      "start_time": "08:00",
+      "type": "Development"
+    }
+  ],
+  "staffshifts":[],
+  "news":[
+    {
+        "id": "1",
+        "message_title": "Important Update",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        "message_type": "news",
+        "message_status": "Active",
+        "file_uploaded": "file1.pdf",
+        "created_at": "2024-05-20 08:30:00",
+        "updated_at": "2024-05-20 08:30:00",
+        "deleted_at": "",
+        "user": "efd37107-7b18-491d-aca0-2545cb3c9848"
+    },
+    {
+        "id": "2",
+        "message_title": "Reminder",
+        "body": "Don't forget about the upcoming meeting tomorrow.",
+        "message_type": "news",
+        "message_status": "Active",
+        "file_uploaded": "",
+        "created_at": "2024-05-21 10:00:00",
+        "updated_at": "2024-05-21 10:00:00",
+        "deleted_at": "",
+        "user": "efd37107-7b18-491d-aca0-2545cb3c9848"
+    },
+    {
+        "id": "3",
+        "message_title": "Welcome New Employees",
+        "body": "Let's give a warm welcome to our new team members.",
+        "message_type": "memo",
+        "message_status": "Active",
+        "file_uploaded": "file2.docx",
+        "created_at": "2024-05-19 14:45:00",
+        "updated_at": "2024-05-19 14:45:00",
+        "deleted_at": "",
+        "user": "efd37107-7b18-491d-aca0-2545cb3c9848"
+    },
+    {
+        "id": "4",
+        "message_title": "Holiday Schedule",
+        "body": "Please take note of the upcoming holiday schedule.",
+        "message_type": "memo",
+        "message_status": "Active",
+        "file_uploaded": "",
+        "created_at": "2024-05-18 09:20:00",
+        "updated_at": "2024-05-18 09:20:00",
+        "deleted_at": "",
+        "user": "efd37107-7b18-491d-aca0-2545cb3c9848"
+    },
+    {
+        "id": "5",
+        "message_title": "Feedback Request",
+        "body": "We value your feedback, please take a moment to share your thoughts.",
+        "message_type": "memo",
+        "message_status": "Active",
+        "file_uploaded": "",
+        "created_at": "2024-05-17 16:00:00",
+        "updated_at": "2024-05-17 16:00:00",
+        "deleted_at": "",
+        "user": "efd37107-7b18-491d-aca0-2545cb3c9848"
+    }
+]
+}

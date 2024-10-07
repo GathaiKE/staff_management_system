@@ -1,0 +1,66 @@
+<div class="flex flex-col w-full gap-2">
+    <span class="w-full h-fit flex justify-between p-4">
+        <span class="text-welcome">Leave Types</span>
+        <button
+            class="flex flex-nowrap flex-col w-fit bg-primary-dark text-white border border-primary-dark active:bg-white rounded-lg text-base active:text-primary-dark p-2 text-center"
+            (click)="openForm()">Add Leave Type</button>
+    </span>
+    <div class="flex flex-col gap-3 h-full w-full rounded-xl p-2 md:py-2 md:px-4">
+        <div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl py-2 px-4 md:flex">
+            <span class="w-full p-3 text-sm">
+                <input type="p-2 rounded-lg" placeholder="Search here" [(ngModel)]="searchString" (keydown)="filter()"
+                    (keyup)="filter()">
+            </span>
+            <table class="text-base">
+                <thead>
+                    <tr>
+                        <th class="text-start text-header_text border-b p-2">No</th>
+                        <th class="text-start text-header_text border-b p-2">Type</th>
+                        <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Date Added</th>
+                        <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Status</th>
+                        <th class="text-start text-header_text border-b p-2">No of Days</th>
+                        <th class="text-start text-header_text border-b p-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="md-3" *ngFor="let leave of leaves; let i = index">
+                        <td class="p-3 border-b border-1">{{i + 1}}</td>
+                        <td class="p-3 border-b border-1">{{leave.type}}</td>
+                        <td class="p-3 border-b border-1 hidden md:table-cell">{{leave.created_at | date:"d MMM y"}}
+                        </td>
+                        <td class="p-3 border-b border-1 hidden md:table-cell text-green-400">Active</td>
+                        <td class="p-3 border-b border-1 text-center">{{leave.days}}</td>
+                        <td class="p-3 border-b border-1 flex flex-row flex-nowrap gap-2">
+                            <button
+                                class="rounded px-1 text-sm border border-primary-dark text-primary-dark bg-white active:bg-primary-dark active:text-white"
+                                (click)="updateLeave(leave)">Edit</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="displayedData.length === 0 && !showSpinner">
+                       <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+                    </tr>
+                    <tr  *ngIf="showSpinner" class="p-5 text-center">
+                        <td colspan="10" class="text-start p-5">
+                            <app-spinner [text]="'Loading'"></app-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-paginator *ngIf="showPag" [totalItems]="leaves.length" [pageSize]="pageSize"
+                [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+        </div>
+    </div>
+</div>
+
+<app-form 
+  *ngIf="showForm"
+  [formTemplate]="newLeaveForm" 
+  [formConfig]="formConfig" 
+  (formValue)="getFormValue($event)" 
+  (closeEvent)="closeForm()" 
+  [submit]="'Add'"
+  [title]="'New Leave'"
+  [abort]="'Cancel'"
+  [size]="'fit'"
+  >
+</app-form>

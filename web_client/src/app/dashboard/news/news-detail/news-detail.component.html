@@ -1,0 +1,18 @@
+<div
+  class="fixed rounded-xl flex flex-col items-center z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 max-h-[75vh] overflow-y-auto w-11/12 md:w-fit bg-white border-alive  text-sm md:text-base md:max-h-[90vh]">
+  <div class="mb-5 flex flex-col justify-center items-center w-full">
+        <div class="flex flex-col w-full h-full">
+            <img src="{{post?.file_uploaded}}" class="md:w-fit" *ngIf="post?.message_type === 'news' && post?.file_uploaded">
+            <span class="p-3 md:p-5 flex flex-col gap-2">
+                <span class="text-header_active_text text-lg">{{post?.message_title}}</span>
+                <span class="text-header_text">{{post?.body}}</span>
+            </span>
+        </div>
+        <div class="w-full flex justify-end gap-3" *ngIf="editAuthority === true">
+          <button type="button" class="border border-primary-dark text-primary-dark py-1 px-5 h-fit text-sm bg-white active:text-white active:bg-primary-dark md:text-base" (click)="closePopup()">{{ abort }}</button>
+          <button type="submit" class="border-primary-dark bg-primary-dark active:text-primary-dark text-white py-1 px-5 h-fit text-sm active:bg-white md:text-base" (click)="submitPopup()">{{ submit }}</button>
+        </div>
+  </div>
+</div>
+<div class="fixed inset-0 bg-backdrop z-30" (click)="closePopup()"></div>
+

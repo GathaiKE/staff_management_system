@@ -1,0 +1,72 @@
+<div class="flex flex-col w-full gap-10 text-sm md:text-base">
+    <div class="flex flex-col bg-white rounded-2xl p-8 gap-5">
+        <span class="flex gap-3 w-full justify-start">
+            <input type="text" placeholder="Search here..." class="md:w-6/12 p-2 text-sm rounded-full md:text-base md:py-2 md:px-4">
+        </span>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-start text-header_text border-b p-2">Transaction</th>
+                    <th class="text-start text-header_text border-b p-2">Payment Date</th>
+                    <th class="text-start text-header_text border-b p-2">Amount</th>
+                    <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Receipt No.</th>
+                    <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Payment Method</th>
+                </tr>
+            </thead>
+            <tbody class="text-base">
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">01</td>
+                    <td class="p-3 border-b border-1">10 May 2024</td>
+                    <td class="p-3 border-b border-1">10000</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-666356</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">CARD</td>
+                </tr>
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">02</td>
+                    <td class="p-3 border-b border-1">10 April 2024</td>
+                    <td class="p-3 border-b border-1">10000</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-21558</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">M-PESA</td>
+                </tr>
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">03</td>
+                    <td class="p-3 border-b border-1">4 March 2024</td>
+                    <td class="p-3 border-b border-1">10000</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-845212</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">CARD</td>
+                </tr>
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">04</td>
+                    <td class="p-3 border-b border-1">10 February 2024</td>
+                    <td class="p-3 border-b border-1">10000</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-6224812</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">CARD</td>
+                </tr>
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">05</td>
+                    <td class="p-3 border-b border-1">10 Janyary 2024</td>
+                    <td class="p-3 border-b border-1">10000</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">RCPT-977686</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">M-PESA</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flex flex-nowrap w-full justify-center gap-3 text-base">
+            <span class="flex flex-row w-fit items-center gap-2 cursor-pointer">
+                <img src="../../../../assets/chevron-back-outline.svg" alt="" class="w-4 h-4">
+                <span>Previous</span>
+            </span>
+            <span class="flex flex-row gap-2">
+                <span class="py-1 px-2 rounded bg-primary-dark text-white cursor-pointer">1</span>
+                <span class="py-1 px-2 rounded cursor-pointer">2</span>
+                <span class="py-1 px-2 rounded cursor-pointer">3</span>
+                <span class="py-1 px-2 rounded cursor-pointer">4</span>
+            </span>
+            <span class="flex flex-row w-fit items-center gap-2 cursor-pointer">
+                <span>Next</span>
+                <img src="../../../../assets/chevron-forward-outline.svg" alt="" class="w-4 h-4">
+            </span>
+        </div>
+    </div>
+</div>

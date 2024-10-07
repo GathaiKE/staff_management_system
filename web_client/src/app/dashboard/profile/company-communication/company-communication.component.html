@@ -1,0 +1,14 @@
+<div class="flex flex-col gap-4">
+    <span>
+      <ul class="flex text-sm flex-row bg-memos w-fit rounded-full cursor-pointer md:text-base">
+        <li class="py-2 px-6 cursor-pointer" 
+            [ngClass]="{'rounded-full bg-primary-dark text-white': activeRoute('profile/news/memos')}" 
+            (click)="navigate('profile/news/memos')">Memos</li>
+        <li class="py-2 px-6 cursor-pointer" 
+            [ngClass]="{'rounded-full bg-primary-dark text-white': activeRoute('profile/news/news')}" 
+            (click)="navigate('profile/news/news')">News</li>
+      </ul>
+    </span>
+    <router-outlet></router-outlet>
+  </div>
+  

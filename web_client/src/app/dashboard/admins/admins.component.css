@@ -1,0 +1,5 @@
+.card{
+    background-image: url('../../../assets/card_background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

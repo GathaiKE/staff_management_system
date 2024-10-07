@@ -1,0 +1,69 @@
+<div class="flex flex-col w-full gap-10 text-sm md:text-base">
+    <div class="flex flex-col bg-white rounded-2xl p-8 gap-5">
+        <span class="flex gap-3 w-full justify-between">
+            <input type="text" placeholder="Search here..." class="md:w-6/12 p-2 text-sm rounded-full md:text-base md:py-2 md:px-4">
+            <button class="py-2 px-6 bg-primary-dark rounded-full text-white border border-primary-dark active:bg-white active:text-primary-dark text-base" (click)="addBuilding()">New Building</button>
+        </span>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-start text-primary-dark border-b p-2">No</th>
+                    <th class="text-start text-primary-dark border-b p-2">Name</th>
+                    <th class="text-start text-primary-dark border-b p-2">Branch</th>
+                    <th class="text-start text-primary-dark border-b p-2 hidden md:table-cell">Date Added</th>
+                    <th class="text-start text-primary-dark border-b p-2 hidden md:table-cell">Status</th>
+                    <th class="text-start text-primary-dark border-b p-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-base">
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">01</td>
+                    <td class="p-3 border-b border-1 ">It Department</td>
+                    <td class="p-3 border-b border-1 ">Upperhill</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">10 May 2024</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell text-green-500">Active</td>
+                    <td class="p-3 border-b border-1 ">
+                        <img src="../../../../../assets/ellipsis-horizontal-outline.svg" alt="actions" class="w-5">
+                    </td>
+                </tr>
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">02</td>
+                    <td class="p-3 border-b border-1 ">Human Resource</td>
+                    <td class="p-3 border-b border-1 ">Westlands</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">10 May 2024</td>
+                    <td class="p-3 border-b border-1 text-yellow-500 hidden md:table-cell">active</td>
+                    <td class="p-3 border-b border-1 ">
+                        <img src="../../../../../assets/ellipsis-horizontal-outline.svg" alt="actions" class="w-5">
+                    </td>
+                </tr>
+                <tr class="mb-3">
+                    <td class="p-3 border-b border-1 ">03</td>
+                    <td class="p-3 border-b border-1 ">Sales and Marketing</td>
+                    <td class="p-3 border-b border-1 ">CBD</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">10 May 2024</td>
+                    <td class="p-3 border-b border-1 text-green-500 hidden md:table-cell">Active</td>
+                    <td class="p-3 border-b border-1 ">
+                        <img src="../../../../../assets/ellipsis-horizontal-outline.svg" alt="actions" class="w-5">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="flex flex-nowrap w-full justify-center gap-3 text-base">
+            <span class="flex flex-row w-fit items-center gap-2 cursor-pointer">
+                <img src="../../../../assets/chevron-back-outline.svg" alt="" class="w-4 h-4">
+                <span>Previous</span>
+            </span>
+            <span class="flex flex-row gap-2">
+                <span class="py-1 px-2 rounded bg-primary-dark text-white cursor-pointer">1</span>
+                <span class="py-1 px-2 rounded cursor-pointer">2</span>
+                <span class="py-1 px-2 rounded cursor-pointer">3</span>
+                <span class="py-1 px-2 rounded cursor-pointer">4</span>
+            </span>
+            <span class="flex flex-row w-fit items-center gap-2 cursor-pointer">
+                <span>Next</span>
+                <img src="../../../../assets/chevron-forward-outline.svg" alt="" class="w-4 h-4">
+            </span>
+        </div>
+    </div>
+</div>

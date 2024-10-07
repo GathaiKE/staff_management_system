@@ -1,0 +1,23 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:p-10">
+            <span class="w-full h-fit items-center rounded-lg p-4 bg-white flex gap-3 md:p-8">
+                <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                    <img src="../../../assets/User.png" alt="User">
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center">
+                    <span class="md:text-md self-start">Welcome to admins management</span>
+                    <ul class="w-full h-fit flex gap-2 text-header_text text-sm">
+                        <li class="p-2" [ngClass]="{'border-b-primary-dark border-b-5 md:border-b-8 text-primary-dark': activeRoute('admins/assistant/all') || activeRoute('admins/assistant/active') || activeRoute('admins/assistant/inactive')}" (click)="navigate('admins/assistant/all')" *ngIf="showPath">Assistant</li>
+                        <li class="p-2" [ngClass]="{'border-b-primary-dark border-b-5 md:border-b-8 text-primary-dark': activeRoute('admins/client/all') || activeRoute('admins/client/active') || activeRoute('admins/client/inactive')}" (click)="navigate('admins/client/all')">Client</li>
+                        <li class="p-2" [ngClass]="{'border-b-primary-dark border-b-5 md:border-b-8 text-primary-dark': activeRoute('admins/branch/all') || activeRoute('admins/branch/active') || activeRoute('admins/branch/inactive')}" (click)="navigate('admins/branch/all')">Branch</li>
+                        <!-- <li class="p-2" [ngClass]="{'border-b-primary-dark border-b-5 md:border-b-8 text-primary-dark': activeRoute('admins/building/all') || activeRoute('admins/building/active') || activeRoute('admins/building/inactive')}" (click)="navigate('admins/building/all')">Building</li> -->
+                    </ul>
+                </span>
+            </span>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+    <span class="w-full p-3 text-sm">
+        <input type="p-2 rounded-lg" placeholder="Search here" [(ngModel)]="searchString" (keydown)="filter()" (keyup)="filter()">
+    </span>
+    <table class="text-base">
+        <thead>
+            <tr class="text-nav_text">
+                <th class="text-start text-header_text border-b p-2">Staff No</th>
+                <th class="text-start text-header_text border-b p-2">Full Name</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Start Date</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">End Date</th>
+                <th class="text-start text-header_text border-b p-2">Status</th>
+                <th class="text-start text-header_text border-b p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="gap-2">
+            <tr class="md-3" *ngFor="let app of applications">
+                <td class="p-3 border-b border-1">{{app.application.user.staff_number}}</td>
+                <td class="p-3 border-b border-1">{{app.application.user.first_name}} {{app.application.user.last_name}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{app.application.start_date | date:"d MMM y"}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{app.application.end_date | date:"d MMM y"}}</td>
+                <td class="p-3 border-b border-1 text-yellow-400">Pending</td>
+                <td class="p-3 border-b border-1 flex flex-col flex-nowrap gap-2 md:flex-row">
+                    <button class="rounded px-1 text-sm border border-primary-dark text-primary-dark bg-white active:bg-primary-dark active:text-white" (click)="approve(app.id)">Approve</button>
+                    <button class="rounded px-1 text-sm text-white bg-red-400 border border-red-400 bg-red-40000 active:bg-white active:text-red-400" (click)="reject(app.id)">Decline</button>
+                </td>
+            </tr>
+            <tr *ngIf="displayedData.length === 0 && !showSpinner">
+               <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+            </tr>
+            <tr  *ngIf="showSpinner" class="p-5 text-center">
+                <td colspan="10" class="text-start p-5">
+                    <app-spinner [text]="'Loading'"></app-spinner>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <app-paginator
+        *ngIf="showPag"
+        [totalItems]="applications.length"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)"
+    />
+</div>

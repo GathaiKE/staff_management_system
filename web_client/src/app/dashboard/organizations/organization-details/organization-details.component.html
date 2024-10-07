@@ -1,0 +1,89 @@
+<div class="flex flex-">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full row text-sm md:text-base md:ml-60 min-h-screen"  *ngIf="organization">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:p-7">
+            <span class="w-full h-fit items-center rounded-lg flex gap-3 flex-col md:flex-row md:p-6">
+               <div class="flex flex-col gap-3 w-fit h-fit items-center bg-white p-10 md:p-5 rounded-xl">
+                    <span class="bg-primary-light rounded-full justify-center items-center p-8 w-fit flex">
+                        <img src="../../../assets/Organization.png" alt="User" class="w-7 h-7 md:w-10 md:h-10">
+                    </span>
+                    <span class="flex flex-col w-full items-center">
+                        <p class="font-bold text-md text-details_card_number text-center md:text-lg">{{organization.name}}</p>
+                        <span class="flex flex-row flex-nowrap items-center gap-2 text-details_card_text">
+                            <img src="../../../../assets/Location Icon.png" alt="location" class="w-4 h-4">
+                            <p class="w-fit h-fit">{{organization.organization_location}}</p>
+                        </span>
+                    </span>
+                    <span class="flex gap-10 justify-center items-center w-full">
+                        <span class="flex flex-col items-center">
+                            <p class="w-fit text-details_card_text">Branches</p>
+                            <p class="w-fit text-details_card_number font-bold">{{branches}}</p>
+                        </span>
+                        <!-- <span class="flex flex-col items-center">
+                            <p class="w-fit text-details_card_text">Buildings</p>
+                            <p class="w-fit text-details_card_number font-bold">{{buildings}}</p>
+                        </span> -->
+                        <span class="flex flex-col items-center">
+                            <p class="w-fit text-details_card_text">Staff</p>
+                            <p class="w-fit text-details_card_number font-bold">{{staff}}</p>
+                        </span>
+                    </span>
+               </div>
+               <div class="flex flex-col gap-5 h-fit w-full">
+                <div class="flex flex-col bg-white p-4 w-fit rounded-lg">
+                    <span class="w-full flex justify-between">
+                        <span class="w-fit pr-3 border-b-4 border-primary-dark">Basic Details</span>
+                        <button class="px-6 py-1 rounded bg-primary-dark text-white border border-primary-dark active:bg-white active:text-primary-dark" (click)="openForm()">Edit</button>
+                    </span>
+                    <span class="h-full w-full flex flex-col gap-3 items-center text-sm md:text-base ">
+                        <span class="w-full p-3 md:w-fit md:-p-0 md:text-md self-start flex gap-10 md:gap-14">
+                            <span class="w-fit h-full flex flex-col">
+                                <span class="text-profile_header">Organization Number</span>
+                                <span class="text-profile_sub">{{organization.org_identifier}}</span>
+                            </span>
+                            <span class="w-fit h-full flex flex-col">
+                                <span class="text-profile_header">Location</span>
+                                <span class="text-profile_sub">{{organization.organization_location}}</span>
+                            </span>
+                            <span class="w-fit h-full hidden flex-col md:flex">
+                                <span class="text-profile_header">Date Joined</span>
+                                <span class="text-profile_sub">{{organization.created_at | date:"d MMM y"}}</span>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+                <div class="flex flex-col bg-white p-4 w-fit rounded-lg">
+                    <span class="w-full flex justify-between">
+                        <span class="w-fit pr-3 border-b-4 border-primary-dark">Contact Informtion</span>
+                    </span>
+                    <span class="h-full w-full flex flex-col gap-3 items-center text-sm md:text-base ">
+                        <span class="w-full p-3 md:w-fit md:-p-0 md:text-md self-start flex gap-10 md:gap-14">
+                            <span class="w-fit h-full flex flex-col">
+                                <span class="text-profile_header">Email</span>
+                                <span class="text-profile_sub">{{organization.organization_email}}</span>
+                            </span>
+                            <span class="w-fit h-full flex flex-col">
+                                <span class="text-profile_header">Phone</span>
+                                <span class="text-profile_sub">+{{organization.organization_tel}} </span>
+                            </span>
+                        </span>
+                    </span>
+                </div>
+               </div>
+            </span>
+            <div class="flex flex-col w-full gap-2 md:w-9/12">
+                <ul class="w-full h-fit flex gap-2 border border-b-primary-light text-header_text text-sm">
+                    <li class="p-2 cursor-pointer" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('organization/branches') || activeRoute('organization')}" (click)="navigate('organization/branches')">Branches</li>
+                    <!-- <li class="p-2 cursor-pointer" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('organization/buildings')}" (click)="navigate('organization/buildings')">Buildings</li> -->
+                    <!-- <li class="p-2 cursor-pointer" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('organization/payment-history')}" (click)="navigate('organization/payment-history')">Payment History</li> -->
+                </ul>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-dual-row-form *ngIf="showForm" [abort]="'Close'" (closeEvent)="closeForm()" [formConfig]="formConfig" [formTemplate]="updateOrganizationForm"
+    (formValue)="getFormValue($event)" [size]="'fit'" [submit]="'Update'" [title]="'Update Company Profile'" [data]="organization">
+</app-dual-row-form>

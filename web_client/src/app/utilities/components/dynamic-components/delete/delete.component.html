@@ -1,0 +1,13 @@
+<div class="fixed inset-0 z-40 flex justify-center items-center">
+    <div class="w-11/12 bg-white border-alive p-5 md:w-fit">
+        <div class="mb-5 flex justify-center">
+            <p>{{message}}</p>
+        </div>
+        <div class="flex justify-end gap-3">
+            <button class="border border-primary-dark text-primary-dark py-1 px-5 h-fit text-sm bg-white active:text-white active:bg-primary-dark md:text-base"(click)="abort()">{{action?.abort}}</button>
+            <button class="border border-primary-dark text-white py-1 px-5 h-fit text-sm bg-primary-dark active:text-primary-dark active:bg-white md:text-base" (click)="submit()">{{action?.submit}}</button>
+        </div>
+    </div>
+</div>
+
+<div class="fixed inset-0 bg-backdrop z-30" (click)="abort()"></div>

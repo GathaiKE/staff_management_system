@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+input{@apply p-2 outline bg-white rounded-md outline-1 outline-primary-light text-md md:text-base}
+select{@apply p-2 outline bg-white rounded-md outline-1 outline-primary-light text-md md:text-base}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,0 +1,59 @@
+<div class="flex flex-col w-full gap-10 text-sm md:text-base">
+    <div class="flex w-full justify-center px-2 md:px-0" *ngIf="showTypeInfo">
+        <table class="w-full border border-1 border-memos md:w-9/12">
+            <thead>
+                <tr class="bg-primary-light border border-1 border-memos">
+                    <th class="text-start border border-1 border-memos p-1">Type Of Leave</th>
+                    <th class="text-end border border-1 border-memos p-1">Used</th>
+                    <th class="text-end border border-1 border-memos p-1">Available</th>
+                    <th class="text-end border border-1 border-memos p-1">Entitled</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let type of typeInfo">
+                    <td class="border border-1 border-memos p-1">{{type.type}}</td>
+                    <td class="text-end border border-1 border-memos p-1">{{type.used}}</td>
+                    <td class="text-end border border-1 border-memos p-1">{{type.available}}</td>
+                    <td class="text-end border border-1 border-memos p-1">{{type.entitled}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="flex flex-col bg-white rounded-2xl p-8 gap-5">
+        <span class="flex gap-3 w-full justify-between md:justify-end">
+            <select name="sort" id="" class="p-3 w-fit text-header_text rounded-2xl outline-none md:w-2/12">
+                <option value="1" class="p-3">Approved</option>
+                <option value="1" class="p-3">Rejected</option>
+                <option value="1" class="p-3">Pending</option>
+            </select>
+        </span>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-start text-primary-dark border-b p-2">No</th>
+                    <th class="text-start text-primary-dark border-b p-2">Type</th>
+                    <th class="text-start text-primary-dark border-b p-2">From</th>
+                    <th class="text-start text-primary-dark border-b p-2">To</th>
+                    <th class="text-start text-primary-dark border-b p-2">Days</th>
+                    <th class="text-start text-primary-dark border-b p-2">Status</th>
+                </tr>
+            </thead>
+            <tbody class="text-base">
+                <tr class="mb-3" *ngFor="let app of displayedData;let i = index">
+                    <td class="p-3 border-b border-1 ">{{i + 1}}</td>
+                    <td class="p-3 border-b border-1 ">{{app.application.leavetype.type}}</td>
+                    <td class="p-3 border-b border-1 ">{{app.application.start_date | date:"d MMM y"}}</td>
+                    <td class="p-3 border-b border-1 ">{{app.application.end_date | date:"d MMM y"}}</td>
+                    <td class="p-3 border-b border-1 ">{{getDays(app.application.start_date, app.application.end_date)}}</td>
+                    <td class="p-3 border-b border-1" [ngClass]="{'text-yellow-500':app.status === 'pending', 'text-green-500':app.status === 'approved', 'text-red-500': app.status === 'rejected'}">{{app.status}}</td>
+                </tr>
+                <tr *ngIf="displayedData.length === 0">
+                   <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <app-paginator *ngIf="showPag" [totalItems]="applications.length" [pageSize]="pageSize"
+        [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+    </div>
+</div>

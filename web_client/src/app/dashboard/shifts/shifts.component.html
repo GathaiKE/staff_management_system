@@ -1,0 +1,34 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:p-7">
+            <span class="w-full h-fit items-center rounded-lg p-4 bg-white flex flex-col gap-3 md:flex-row md:p-6">
+                <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                    <img src="../../../assets/Calendar.png" alt="User">
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center">
+                    <span class="md:text-md self-start">Work Shifts</span>
+                    <span class="text-primary-dark text-sm self-start md:text-base">These are the shifts recognized by our company.</span>
+                </span>
+                <span class="flex justify-start md:justify-center w-full md:w-fit">
+                    <button class="p-2 bg-primary-dark text-white border text-sm text-center border-primary-dark active:bg-white active:text-primary-dark rounded-lg w-32" (click)="openForm()">New Work Shift</button>
+                </span>
+            </span>
+            <div class="flex flex-col w-full gap-2">
+                <span class="text-welcome">Shifts management</span>
+                <ul class="w-full h-fit flex gap-2 border border-b-primary-light text-header_text text-sm">
+                    <li class="p-2 cursor-pointer" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('shifts/company-shifts') || activeRoute('shifts/shift')}" (click)="navigate('shifts/company-shifts')">Our Shifts</li>
+                    <!-- <li class="p-2 cursor-pointer" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('shifts/user-shifts')}" (click)="navigate('shifts/user-shifts')">Staff Shifts</li> -->
+                </ul>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-dual-row-form *ngIf="activeForm" [abort]="'Close'" (closeEvent)="closeForm()" [formConfig]="formConfig" [formTemplate]="registerShiftForm"
+    (formValue)="getFormValue($event)" [size]="'fit'" [submit]="'Add'" [title]="'New Shift'" (selectDay)="selectDay($event)">
+</app-dual-row-form>

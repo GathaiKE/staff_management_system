@@ -1,0 +1,56 @@
+<div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+    <span class="w-full p-3 text-sm">
+        <input type="p-2 rounded-lg w-1/3" placeholder="Search here" [(ngModel)]="searchString" (keyup)="filter()"(keydown)="filter()">
+    </span>
+
+    <table class="text-base md:text-md">
+        <thead>
+            <tr class="">
+                <th class="text-start text-header_text border-b p-2"></th>
+                <th class="text-start text-header_text border-b p-2">Staff</th>
+                <th class="text-start text-header_text border-b p-2">Name</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Phone</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Expected</th>
+                <th class="text-start text-header_text border-b p-2">In</th>
+                <th class="text-start text-header_text border-b p-2">Out</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Department</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Branch</th>
+                <th class="text-start text-header_text border-b p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-base">
+            <tr class="mb-3" *ngFor="let rec of displayedData">
+                <td class="p-3 border-b border-1l">
+                    <span class="px-1 h-2 w-2 rounded-full" [ngClass]="{'bg-red-500':rec.checkout_time, 'bg-green-500':!rec.checkout_time}"></span>
+                </td>
+                <td class="p-3 border-b border-1">{{rec.user.staff_number}}</td>
+                <td class="p-3 border-b border-1">{{rec.user.first_name}} <span class="hidden md:inline">{{rec.user.middle_name}}</span> {{rec.user.last_name}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell"><span *ngIf="rec.user.phone_number">+</span>{{rec.user.phone_number}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{rec.checkin_time | date:'hh:mm a'}}</td>
+                <td class="p-3 border-b border-1">{{rec.checkin_time | date:'hh:mm a'}}</td>
+                <td class="p-3 border-b border-1">{{rec.checkout_time | date:'hh:mm a'}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{rec.user.staff_department}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{rec?.user?.user_organization?.branch?.name}}</td>
+                <td class="p-3 border-b border-1 relative">
+                    <button><img src="../../../../assets/ellipsis-horizontal-outline.svg" matTooltip="Details" alt="" class="h-5 w-5 cursor-pointer" (click)="details(rec.user.id)"></button>
+                </td>
+            </tr>
+            <tr *ngIf="data?.length === 0 && !showSpinner">
+               <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+            </tr>
+            <tr  *ngIf="showSpinner" class="p-5 text-center">
+                <td colspan="10" class="text-start p-5">
+                    <app-spinner [text]="'Loading'"></app-spinner>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <app-paginator
+        *ngIf="showPag"
+        [totalItems]="data.length"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        (pageChange)="onPageChange($event)"
+    />
+</div>

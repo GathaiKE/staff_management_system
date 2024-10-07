@@ -1,0 +1,122 @@
+<div class="flex flex-col gap-1 w-full h-full">
+    <span class="w-full h-fit items-center rounded-lg flex gap-3 flex-col md:items-start md:flex-row md:p-2">
+        <div class="flex flex-col gap-3 w-fit h-fit items-center bg-white p-10 rounded-xl">
+            <span class="flex flex-col gap-2 w-full">
+                <span class="gap-4 flex items-center">
+                    <span class="px-1 h-3 w-3 rounded-full"
+                        [ngClass]="{'bg-red-500':slots >= (required * 3/4),'bg-yellow-500': slots < (required * 3/4) && slots >= (required * 1/2),'bg-blue-400':slots < (required * 1/2) && slots >= (required * 1/4),'bg-green-500':slots < (required * 1/4)}"></span>
+                    <p class="font-bold text-md text-details_card_number text-center md:text-lg">{{shift?.type}}</p>
+                </span>
+                <span class="flex flex-row flex-nowrap items-center gap-7 text-details_card_text">
+                    <span class="flex flex-row gap-2 w-fit items-center">
+                        <img src="../../../../assets/shifts.png" alt="location" class="w-4 h-4">
+                        <span class="flex flex-row flex-nowrap items-center gap-2 h-fit text-sm">
+                            <p class="w-fit text-details_card_text font-bold">From </p>
+                            <p class="w-fit text-details_card_text">{{shift?.start_date | date:"dd/MM/yyyy"}}</p>
+                        </span>
+                    </span>
+                    <span class="flex flex-row gap-2">
+                        <span class="flex flex-row flex-nowrap items-center gap-2 text-sm">
+                            <p class="w-fit text-details_card_text font-bold">To </p>
+                            <p class="w-fit text-details_card_text">{{shift?.end_date | date:"dd/MM/yyyy"}}</p>
+                        </span>
+                    </span>
+                </span>
+                <span class="flex flex-row flex-nowrap items-center justify-between text-details_card_text">
+                    <span class="flex flex-row gap-2">
+                        <img src="../../../../assets/time.png" alt="location" class="w-4 h-4">
+                        <span class="flex flex-row items-center gap-2 text-sm">
+                            <p class="w-fit text-details_card_text font-bold">Start</p>
+                            <p class="w-fit text-details_card_text">{{shift?.start_time}}</p>
+                        </span>
+                    </span>
+                    <span class="flex flex-row gap-2">
+                        <span class="flex flex-row gap-2 text-sm">
+                            <p class="w-fit text-details_card_text font-bold">End</p>
+                            <p class="w-fit text-details_card_text">{{shift?.end_time}}</p>
+                        </span>
+                    </span>
+                </span>
+            </span>
+            <span class="flex flex-row self-start items-center gap-2 text-sm">
+                <img src="../../../../assets/repeat.png" alt="location" class="w-4 h-4">
+                <p class="w-fit text-details_card_text">Weekdays</p>
+            </span>
+            <span class="flex text-sm items-center gap-3">
+                <img src="../../../../assets/staff.png" alt="location" class="w-6 h-6">
+                <span class="flex gap-10 justify-center items-center w-full">
+                    <span class="flex flex-col items-center">
+                        <p class="w-fit text-details_card_text font-bold">Required</p>
+                        <p class="w-fit text-details_card_text">{{required}}</p>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <p class="w-fit text-details_card_text font-bold">Covering</p>
+                        <p class="w-fit text-details_card_text">{{covering}}</p>
+                    </span>
+                    <span class="flex flex-col items-center">
+                        <p class="w-fit text-details_card_text font-bold">Slots</p>
+                        <p class="w-fit text-details_card_text ">{{slots}}</p>
+                    </span>
+                </span>
+            </span>
+
+        </div>
+        <div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+            <span class="w-full p-3 text-sm flex justify-between">
+                <button
+                    class="px-6 py-1 rounded bg-white text-primary-dark border border-primary-dark active:bg-primary-dark active:text-white" (click)="goBack()">Back</button>
+                <button
+                    class="px-6 py-1 rounded bg-primary-dark text-white border border-primary-dark active:bg-white active:text-primary-dark"
+                    (click)="add()">Add
+                    Staff</button>
+            </span>
+            <table class="text-base">
+                <thead>
+                    <tr class="">
+                        <th class="text-start text-header_text border-b p-2"></th>
+                        <th class="text-start text-header_text border-b p-2">Staff No</th>
+                        <th class="text-start text-header_text border-b p-2">Staff Name</th>
+                        <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Department</th>
+                        <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Email</th>
+                        <th class="text-start text-header_text border-b p-2">Phone</th>
+                        <th class="text-start text-header_text border-b p-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="gap-2">
+                    <tr class="md-3" *ngFor="let s of displayedData">
+                        <td class="p-3 border-b border-1 hidden md:table-cell">
+                            <span class="px-1 h-2 w-2 rounded-full"
+                                [ngClass]="{'bg-red-500':!s.user.is_checked_in, 'bg-green-500':s.user.is_checked_in}"></span>
+                        </td>
+                        <td class="p-3 border-b border-1">{{s.user.staff_number}}</td>
+                        <td class="p-3 border-b border-1 hidden md:table-cell">{{s.user.first_name}}
+                            {{s.user.last_name}}
+                        </td>
+                        <td class="p-3 border-b border-1 hidden md:table-cell">{{s.user.staff_department}}</td>
+                        <td class="p-3 border-b border-1 ">{{s.user.email}}</td>
+                        <td class="p-3 border-b border-1 ">+{{s.user.phone_number}}</td>
+                        <td class="border-b border-1">
+                            <button
+                                class="rounded px-1 text-sm border border-primary-dark text-primary-dark bg-white active:bg-primary-dark active:text-white"
+                                (click)="details(s.id)">Details</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="displayedData.length === 0 && !showSpinner">
+                       <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+                    </tr>
+                    <tr  *ngIf="showSpinner" class="p-5 text-center">
+                        <td colspan="10" class="text-start p-5">
+                            <app-spinner [text]="'Loading'"></app-spinner>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <app-paginator *ngIf="showPag" [totalItems]="staffShifts.length" [pageSize]="pageSize"
+                [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+        </div>
+    </span>
+</div>
+
+<app-form *ngIf="showForm" [formTemplate]="staffShiftForm" [formConfig]="formConfig" (formValue)="getFormValue($event)"
+    (closeEvent)="closeForm()" [submit]="submit" [title]="title" [abort]="abort" [size]="size" [staff]="staff">
+</app-form>

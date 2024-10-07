@@ -1,0 +1,15 @@
+<div class="flex flex-row">
+    <div class="flex flex-col w-full h-full">
+        <div class="flex flex-col gap-4 w-full h-full">
+            <div class="flex flex-col w-full gap-2 md:w-9/12">
+                <span class="text-welcome">View and manage assistant admins</span>
+                <ul class="w-full h-fit flex gap-2 border border-b-primary-light text-header_text text-sm">
+                    <li class="p-2" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('admins/assistant/all')}" (click)="navigate('admins/assistant/all')">All</li>
+                    <li class="p-2" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('admins/assistant/active')}" (click)="navigate('admins/assistant/active')">Active</li>
+                    <li class="p-2" [ngClass]="{' border-b-primary-dark border-b-4 text-primary-dark': activeRoute('admins/assistant/inactive')}" (click)="navigate('admins/assistant/inactive')">Inactive</li>
+                </ul>
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

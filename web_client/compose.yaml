@@ -1,0 +1,10 @@
+version: "3"
+services:
+  cintelcore-staff-web-app:
+    image: cintelcore_staff_web_app_image
+    container_name: cintelcore_staff_web_app_container
+    ports:
+      - "8085:80"
+    build:
+      context: .
+      dockerfile: Dockerfile

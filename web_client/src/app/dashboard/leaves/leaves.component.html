@@ -1,0 +1,22 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-5 md:p-7">
+            <span class="w-full h-fit items-center rounded-lg p-4 bg-white flex flex-col gap-3 md:flex-row md:p-6">
+                <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                    <img src="../../../assets/Organization.png" alt="User">
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center">
+                    <span class="md:text-md self-start">Leaves management</span>
+                    <span class="text-primary-dark text-sm self-start md:text-base">Welcome to Leaves management</span>
+                </span>
+            </span>
+            <ul class="w-full h-fit flex gap-2 border border-b-primary-light text-header_text text-sm">
+                <li class="p-2 cursor-pointer" [ngClass]="{'border-b-primary-dark border-b-4 text-primary-dark':activeRoute('leaves/requests/pending') || activeRoute('leaves/requests/approved') || activeRoute('leaves/requests/rejected')}" (click)="navigate('leaves/requests')">Leave Requests</li>
+                <li class="p-2 cursor-pointer" [ngClass]="{'border-b-primary-dark border-b-4 text-primary-dark':activeRoute('leaves/types')}" (click)="navigate('leaves/types')">Leave Types</li>
+            </ul>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

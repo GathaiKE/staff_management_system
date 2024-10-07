@@ -1,0 +1,611 @@
+<div
+    class="fixed rounded-xl flex flex-col items-center z-40 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-11/12 md:w-{{size}} bg-white border-alive p-3 md:p-5 text-sm md:text-base">
+    <div class="flex w-full justify-start text-md mb-3">
+        <h1 class="h-full w-fit py-2 border-b-primary-dark border-b-4 text-base md:text-md text-header_text">{{ title }}
+        </h1>
+    </div>
+    <div class="mb-5 flex justify-center items-center w-full">
+        <!-- Register Staff -->
+        <form [formGroup]="registerStaff" class="w-full flex flex-col gap-2" *ngIf="activeForm === 'registerStaff'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 relative">
+                    <span class="flex w-full justify-between">
+                        <label for="firstName" class="text-form_label">First Name</label>
+                        <!-- <span *ngIf="registerStaff.get('firstName')?.hasError('required') && (registerStaff.get('firstName')?.touched)" class="text-red-500">Required*</span> -->
+                    </span>
+                    <input type="text" formControlName="firstName" class="text-header_text outline-header_text"
+                        placeholder="Leonardo">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 relative">
+                    <span class="flex w-full justify-between">
+                        <label for="middleName" class="text-form_label">Middle Name</label>
+                        <!-- <span *ngIf="registerStaff.get('middleName')?.hasError('middleName') && (registerStaff.get('middleName')?.dirty || registerStaff.get('middleName')?.touched)" class="text-red-500">Required*</span> -->
+                    </span>
+                    <input type="text" formControlName="middleName" class="text-header_text outline-header_text"
+                        placeholder="De">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="lastName" class="text-form_label">Last Name</label>
+                    <input type="text" formControlName="lastName" class="text-header_text outline-header_text"
+                        placeholder="Caprio">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="email" class="text-form_label">Email</label>
+                    <input type="email" formControlName="email" class="text-header_text outline-header_text"
+                        placeholder="leo.example@cintelcore.com">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="staffNumber" class="text-form_label">Staff Number</label>
+                    <input type="text" formControlName="staffNumber" class="text-header_text outline-header_text"
+                        placeholder="STAFF-1234">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="PhoneNumber" class="text-form_label">Phone Number</label>
+                    <input type="text" formControlName="phoneNumber" class="text-header_text outline-header_text"
+                        placeholder="+254710 000 000">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="address" class="text-form_label">Current Address</label>
+                    <input type="text" formControlName="address" class="text-header_text outline-header_text"
+                        placeholder="Bishop Road, Nairobi, Kenya">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="department" class="text-form_label">Department</label>
+                    <input type="text" formControlName="department" class="text-header_text outline-header_text">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="idNumber" class="text-form_label">ID Number</label>
+                    <input type="text" formControlName="idNumber" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="branch" class="text-form_label">Branch</label>
+                    <select name="branch" formControlName="branch" class="text-header_text outline-header_text">
+                        <option *ngFor="let branch of branches;" value="{{branch.id}}">{{branch.name}}</option>
+                    </select>
+                </span>
+            </div>
+            <div class="flex gap-2 w-full justify-start flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="dob" class="text-form_label">Date of Birth</label>
+                    <input type="date" formControlName="dob" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2">
+                    <label for="password" class="text-form_label">Password</label>
+                    <input type="password" formControlName="password" class="text-header_text outline-header_text"
+                        placeholder="*****">
+                </span>
+            </div>
+        </form>
+
+        <!-- Add Shift -->
+        <form [formGroup]="registerShift" class="w-full flex flex-col gap-2" *ngIf="activeForm === 'registerShift'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="role" class="text-form_label">Work Role</label>
+                    <input type="text" formControlName="role" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="repeat" class="text-form_label">Repetition</label>
+                    <select name="repeat" formControlName="repeat" class="text-header_text outline-header_text">
+                        <option value="daily" (click)="updateCustom()">Daily</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekends">Weekends</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="startDate" class="text-form_label">Start Date</label>
+                    <input type="date" formControlName="startDate" class="text-header_text outline-header_text"
+                        placeholder="Caprio">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="endDate" class="text-form_label">End Date</label>
+                    <input type="date" formControlName="endDate" class="text-header_text outline-header_text"
+                        placeholder="leo.example@cintelcore.com">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="startTime" class="text-form_label">Start Time</label>
+                    <input type="time" formControlName="startTime" class="text-header_text outline-header_text"
+                        placeholder="29 April 2024">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="endTime" class="text-form_label">End Time</label>
+                    <input type="time" formControlName="endTime" class="text-header_text outline-header_text p-2">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-col">
+                <label for="days">Days</label>
+                <span class="flex flex-row w-full gap-2 text-sm items-center">
+                  <span class="p-1 w-6 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.s')?.value}" (click)="selectDay('S')">S</span>
+                  <span class="p-1 w-8 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.m')?.value}" (click)="selectDay('M')">M</span>
+                  <span class="p-1 w-8 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.t')?.value}" (click)="selectDay('T')">T</span>
+                  <span class="p-1 w-8 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.w')?.value}" (click)="selectDay('W')">W</span>
+                  <span class="p-1 w-8 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.th')?.value}" (click)="selectDay('Th')">T</span>
+                  <span class="p-1 w-8 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.f')?.value}" (click)="selectDay('F')">F</span>
+                  <span class="p-1 w-8 rounded text-center cursor-pointer" [ngClass]="{'bg-primary-dark text-white': registerShift.get('days.sa')?.value}" (click)="selectDay('Sa')">S</span>
+                </span>
+              </div>
+            <div class="flex gap-2 w-full justify-start flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="staffCount" class="text-form_label">No of Staff Required</label>
+                    <input type="number" formControlName="staffCount" class="text-header_text outline-header_text"
+                        placeholder="7">
+                </span>
+            </div>
+        </form>
+
+        <!-- updateShift -->
+        <form [formGroup]="updateShift" class="w-full flex flex-col gap-2" *ngIf="activeForm === 'updateShift'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="role" class="text-form_label">Work Role</label>
+                    <input type="text" formControlName="role" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="staffCount" class="text-form_label">No of Staff Required</label>
+                    <input type="number" formControlName="staffCount" class="text-header_text outline-header_text"
+                        placeholder="7">
+                </span>
+                <!-- <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="repeat" class="text-form_label">Repetition</label>
+                    <select name="repeat" formControlName="repeat" class="text-header_text outline-header_text">
+                       <option value="daily">Daily</option>
+                       <option value="weekdays">Weekdays</option>
+                       <option value="weekends">Weekends</option>
+                       <option value="custom">Custom</option>
+                   </select>
+                </span> -->
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="startDate" class="text-form_label">Start Date</label>
+                    <input type="date" formControlName="startDate" class="text-header_text outline-header_text"
+                        placeholder="Caprio">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="endDate" class="text-form_label">End Date</label>
+                    <input type="date" formControlName="endDate" class="text-header_text outline-header_text"
+                        placeholder="leo.example@cintelcore.com">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="startTime" class="text-form_label">Start Time</label>
+                    <input type="time" formControlName="startTime" class="text-header_text outline-header_text"
+                        placeholder="29 April 2024">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="endTime" class="text-form_label">End Time</label>
+                    <input type="time" formControlName="endTime" class="text-header_text outline-header_text p-2">
+                </span>
+            </div>
+            <div class="hidden gap-2 w-full flex-col">
+                <label for="days">Days</label>
+                <span class="flex flex-row w-full gap-2 text-sm items-center">
+                    <span
+                        class="p-1 w-6 rounded text-center active:bg-primary-dark active:text-white bg-primary-light test-white cursor-pointer">S</span>
+                    <span
+                        class="p-1 w-8 rounded text-center active:bg-primary-dark active:text-white cursor-pointer bg-primary-light test-white">M</span>
+                    <span
+                        class="p-1 w-8 rounded text-center active:bg-primary-dark active:text-white cursor-pointer bg-primary-light test-white">T</span>
+                    <span
+                        class="p-1 w-8 rounded text-center active:bg-primary-dark active:text-white cursor-pointer bg-primary-light test-white">W</span>
+                    <span
+                        class="p-1 w-8 rounded text-center active:bg-primary-dark active:text-white bg-primary-light test-white cursor-pointer">T</span>
+                    <span
+                        class="p-1 w-8 rounded text-center active:bg-primary-dark active:text-white bg-primary-light test-white cursor-pointer">F</span>
+                    <span
+                        class="p-1 w-8 rounded text-center active:bg-primary-dark active:text-white bg-primary-light test-white cursor-pointer">S</span>
+                </span>
+            </div>
+        </form>
+
+        <!-- Make Admin -->
+        <div class="flex flex-col gap-3" *ngIf="activeForm === 'makeAdmin'">
+            <form [formGroup]="makeAdmin" class="w-full">
+                <div class="flex flex-col gap-2 w-full md:gap-5">
+
+                    <span class="flex flex-col gap-2 w-full" *ngIf="title === 'Make Branch Admin'">
+                        <label for="branch" class="text-form_label">Branch</label>
+                        <select name="branch" formControlName="branch" class="text-header_text outline-header_text"
+                            (change)="onSelection($event)">
+                            <option value="1">Upperhill</option>
+                            <option value="2">Westlands</option>
+                            <option value="3">CBD</option>
+                        </select>
+                    </span>
+
+                    <span class="flex flex-col gap-2 w-full" *ngIf="title === 'Make Organization Admin'">
+                        <label for="organization" class="text-form_label">Organization</label>
+                        <select name="organization" formControlName="organization"
+                            class="text-header_text outline-header_text" (change)="onSelection($event)">
+                            <option value="1">Cintelcore</option>
+                            <option value="2">Safaricom</option>
+                            <option value="3">Kenyatta National Hospital</option>
+                        </select>
+                    </span>
+
+                    <span class="flex flex-col gap-2 w-full" *ngIf="title === 'Make Building Admin'">
+                        <label for="building" class="text-form_label">Building</label>
+                        <select name="building" formControlName="building" class="text-header_text outline-header_text"
+                            (change)="onSelection($event)">
+                            <option value="1">B1</option>
+                            <option value="2">B2</option>
+                            <option value="3">B3</option>
+                        </select>
+                    </span>
+
+                    <span class="flex flex-col gap-2 w-full" [ngClass]="{ 'hidden': !showNameFilterField }">
+                        <label for="filterText" class="text-form_label">Search by name, staff number or Id
+                            number</label>
+                        <input type="text" formControlName="filterText" class="text-header_text outline-header_text"
+                            placeholder="Search">
+                    </span>
+                </div>
+            </form>
+            <div class="flex w-full justify-start flex-row md:gap-5" [ngClass]="{ 'hidden': !showNameFilterField }">
+                <ul class="w-full p-2 flex flex-col gap-2 text-header_text">
+                    <li class="active:bg-primary-light p-2">John Doe</li>
+                    <li class="active:bg-primary-light p-2">Jane Doe</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Assign Shift -->
+        <div class="flex flex-col gap-3" *ngIf="activeForm === 'assignShift'">
+                <div class="flex flex-col gap-2 w-full md:gap-5">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="filterText" class="text-form_label">Search by name, staff number or Id
+                            number</label>
+                        <input type="text" [(ngModel)]="filterText" class="text-header_text outline-header_text"
+                            placeholder="Search" (keydown)="filterStaff($event)" (keyup)="filterStaff($event)">
+                    </span>
+                </div>
+            <form [formGroup]="assignShift" class="w-full">
+            <div class="flex w-full justify-start flex-row md:gap-5" [ngClass]="{ 'hidden': !showNameFilterField }">
+                <ul class="w-full p-2 flex flex-col gap-2 text-header_text overflow-auto">
+                    <li class="hover:bg-primary-light cursor-pointer p-2" *ngFor="let staff of filteredStaff" formControlName="staff" value="{{staff.id}}">{{staff.first_name}} {{staff.last_name}}</li>
+                </ul>
+            </div>
+            </form>
+        </div>
+
+        <!-- Record Payment -->
+        <div class="flex flex-col gap-3 w-full md:w-fit" *ngIf="activeForm === 'recordPayment'">
+            <form [formGroup]="recordPayment" class="w-full">
+                <div class="flex gap-2 w-full flex-col md:gap-2">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="orgNumber" class="text-form_label">Organization number</label>
+                        <input type="text" formControlName="orgNumber"
+                            class="text-header_text outline-header_text w-full">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="transactionNumber" class="text-form_label">Transaction Number</label>
+                        <input type="text" formControlName="transactionNumber"
+                            class="text-header_text outline-header_text w-full">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="paymentDate" class="text-form_label">Payment Date</label>
+                        <input type="date" formControlName="paymentDate"
+                            class="text-header_text outline-header_text w-full">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="receiptNo" class="text-form_label">Receipt Number</label>
+                        <input type="text" formControlName="receiptNo"
+                            class="text-header_text outline-header_text w-full">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="amount" class="text-form_label">Amount Paid</label>
+                        <input type="text" formControlName="amount" class="text-header_text outline-header_text w-full">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="paymentMethod" class="text-form_label">Payment Method</label>
+                        <select name="branch"
+                            class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-sm py-2 px-4 w-full cursor-pointer md:text-base outline-header_text">
+                            <option value="" class="bg-white">M-Pesa</option>
+                            <option value="" class="bg-white">Card Branch</option>
+                            <option value="" class="bg-white">Bit Coin</option>
+                        </select>
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Register Organization -->
+        <form [formGroup]="registerOrganization" class="w-full flex flex-col gap-2"
+            *ngIf="activeForm === 'registerOrganization'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="orgName" class="text-form_label">Organization Name</label>
+                    <input type="text" formControlName="orgName" class="text-header_text outline-header_text"
+                        placeholder="Cintelcore Limited">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="address" class="text-form_label">Address</label>
+                    <input type="text" formControlName="address" class="text-header_text outline-header_text"
+                        placeholder="Bishop Road, Nairobi, Kenya">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <div class="flex gap-2 w-full flex-row md:gap-5">
+                    <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                        <label for="email" class="text-form_label">Contact Email</label>
+                        <input type="email" formControlName="email" class="text-header_text outline-header_text"
+                            placeholder="client@example.com">
+                    </span>
+                    <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                        <label for="phoneNumber" class="text-form_label">Contact Number</label>
+                        <input type="email" formControlName="phoneNumber" class="text-header_text outline-header_text"
+                            placeholder="+254710 000 000">
+                    </span>
+                </div>
+                <span class="w-1/2 flex justify-end items-center gap-2">
+                    <label for="status" class="text-form_label w-fit">Active</label>
+                    <input type="checkbox" formControlName="status" class="outline-none w-fit">
+                </span>
+            </div>
+        </form>
+
+        <!-- Update my Organization -->
+        <form [formGroup]="updateOrganization" class="w-full flex flex-col gap-2"
+            *ngIf="activeForm === 'updateOrganization'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="orgName" class="text-form_label">Organization Name</label>
+                    <input type="text" formControlName="orgName" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="address" class="text-form_label">Address</label>
+                    <input type="text" formControlName="address" class="text-header_text outline-header_text">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="phoneNumber" class="text-form_label">Contact Number</label>
+                    <input type="email" formControlName="phoneNumber" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="email" class="text-form_label">Contact Email</label>
+                    <input type="email" formControlName="email" class="text-header_text outline-header_text">
+                </span>
+            </div>
+        </form>
+
+        <!-- Register Branch -->
+        <form [formGroup]="registerBranch" class="w-full flex flex-col gap-2" *ngIf="activeForm  === 'registerBranch'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="branchNumber" class="text-form_label">Branch Number</label>
+                    <input type="text" formControlName="branchNumber" class="text-header_text outline-header_text"
+                        placeholder="BRANCH-001">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="branchName" class="text-form_label">Branch Name</label>
+                    <input type="text" formControlName="branchName" class="text-header_text outline-header_text"
+                        placeholder="Head Office">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="address" class="text-form_label">Address</label>
+                    <input type="text" formControlName="address" class="text-header_text outline-header_text"
+                        placeholder="Bishop Road, Nairobi, Kenya">
+                </span>
+                <span class="w-1/2 flex flex-row-reverse items-center gap-2 md:w-fit">
+                    <label for="status" class="text-form_label w-fit">Status</label>
+                    <input type="checkbox" formControlName="status" class="outline-none w-fit">
+                </span>
+            </div>
+        </form>
+
+        <!-- Register Building -->
+        <form [formGroup]="registerBuilding" class="w-full flex flex-col gap-2"
+            *ngIf="activeForm === 'registerBuilding'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="buildingNumber" class="text-form_label">Building Number</label>
+                    <input type="text" formControlName="buildingNumber" class="text-header_text outline-header_text"
+                        placeholder="BUILD-001">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="buildingName" class="text-form_label">Building Name</label>
+                    <input type="text" formControlName="buildingName" class="text-header_text outline-header_text"
+                        placeholder="Main Office">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="branch" class="text-form_label">Branch</label>
+                    <input type="text" formControlName="branch" class="text-header_text outline-header_text"
+                        placeholder="Head Office">
+                </span>
+                <span class="w-1/2 flex flex-row-reverse items-center gap-2 md:w-fit">
+                    <label for="status" class="text-form_label w-fit">Status</label>
+                    <input type="checkbox" formControlName="status" class="outline-none w-fit">
+                </span>
+            </div>
+        </form>
+
+        <!-- Add Leave type -->
+        <div class="flex flex-col gap-3" *ngIf="activeForm === 'newLeaveType'">
+            <form [formGroup]="leaveTypeForm" class="w-full">
+                <div class="flex gap-2 w-full flex-col md:gap-5">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="name" class="text-form_label">Leave Name</label>
+                        <input type="text" formControlName="name" class="text-header_text outline-header_text">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="days" class="text-form_label">No of Days</label>
+                        <input type="number" formControlName="days" class="text-header_text outline-header_text">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="status" class="text-form_label w-fit">Available</label>
+                        <input type="checkbox" formControlName="status" class="outline-none w-fit">
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Update Leave type -->
+        <div class="flex flex-col gap-3" *ngIf="activeForm === 'updateLeaveType'">
+            <form [formGroup]="updateLeaveTypeForm" class="w-full">
+                <div class="flex gap-2 w-full flex-col md:gap-5">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="name" class="text-form_label">Leave Name</label>
+                        <input type="text" formControlName="name" class="text-header_text outline-header_text">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="days" class="text-form_label">No of Days</label>
+                        <input type="number" formControlName="days" class="text-header_text outline-header_text">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="status" class="text-form_label w-fit">Available</label>
+                        <input type="checkbox" formControlName="status" class="outline-none w-fit">
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Post /Update Memo -->
+        <div class="flex flex-col gap-3" *ngIf="activeForm === 'newMemo' || activeForm === 'updateMemo'">
+            <form [formGroup]="memoForm" class="w-full">
+                <div class="flex gap-2 w-full flex-col md:gap-5">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="title" class="text-form_label">Title</label>
+                        <input type="text" formControlName="title" class="text-header_text outline-header_text" (change)="onFileChange($event)">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="body" class="text-form_label">Content</label>
+                        <textarea formControlName="body" cols="140" rows="15" placeholder="Write your content here"
+                            class="text-header_text p-2 border outline-none text-sm border-header_text md:text-base hidden md:inline"></textarea>
+
+                        <textarea formControlName="body" cols="65" rows="20" placeholder="Write your content here"
+                            class="text-header_text p-2 border outline-none text-sm border-header_text inline md:hidden md:text-base"></textarea>
+                    </span>
+                    <span class="flex flex-row-reverse gap-2 w-full">
+                        <label for="status" class="text-form_label w-fit">Make Public</label>
+                        <input type="checkbox" class="border-none outline-none" formControlName="status">
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Post /Update News -->
+        <div class="flex flex-col gap-3" *ngIf="activeForm === 'newRelease' || activeForm === 'updatePublication'">
+            <form [formGroup]="postNewsForm" class="w-full">
+                <div class="flex gap-2 w-full flex-col md:gap-5">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="title" class="text-form_label">Title</label>
+                        <input type="text" formControlName="title" class="text-header_text outline-header_text">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="body" class="text-form_label">Content</label>
+                        <textarea formControlName="body" cols="140" rows="15" placeholder="Write your content here"
+                            class="text-header_text p-2 border outline-none text-sm border-header_text md:text-base hidden md:inline"></textarea>
+
+                        <textarea formControlName="body" cols="65" rows="20" placeholder="Write your content here"
+                            class="text-header_text p-2 border outline-none text-sm border-header_text inline md:hidden md:text-base"></textarea>
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="status" class="text-form_label w-fit">{{newsImageUpdateText}} Image here</label>
+                        <input type="file" formControlName="image" class="outline-none w-fit" (change)="onFileChange($event)">
+                    </span>
+                </div>
+            </form>
+        </div>
+
+        <!-- Update User -->
+        <form [formGroup]="updateUserForm" class="w-fullfull flex flex-col gap-2" *ngIf="activeForm === 'updateUser'">
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="firstName" class="text-form_label">First Name</label>
+                    <input type="text" formControlName="firstName" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="middleName" class="text-form_label">Middle Name</label>
+                    <input type="text" formControlName="middleName" class="text-header_text outline-header_text">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="lastName" class="text-form_label">Last Name</label>
+                    <input type="text" formControlName="lastName" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="email" class="text-form_label">Email</label>
+                    <input type="email" formControlName="email" class="text-header_text outline-header_text">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full flex-row md:justify-between">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="dob" class="text-form_label">Date of Birth</label>
+                    <input type="date" formControlName="dob" class="text-header_text outline-header_text">
+                </span>
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="PhoneNumber" class="text-form_label">Phone Number</label>
+                    <input type="text" formControlName="phoneNumber" class="text-header_text outline-header_text">
+                </span>
+            </div>
+            <div class="flex gap-2 w-full justify-start flex-row md:gap-5">
+                <span class="w-1/2 flex flex-col gap-2 md:w-fit">
+                    <label for="address" class="text-form_label">Current Address</label>
+                    <input type="text" formControlName="address" class="text-header_text outline-header_text">
+                </span>
+            </div>
+        </form>
+
+        <!-- New Leave application -->
+        <div class="flex flex-col gap-3 w-full md:w-fit">
+            <form [formGroup]="newLeaveApplication" class="w-full" *ngIf="activeForm === 'newLeaveApplication'">
+                <div class="flex gap-2 w-full flex-col md:gap-2">
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="leaveType" class="text-form_label">Leave Type</label>
+                        <select name="leaveType"
+                            class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-sm py-2 px-4 w-full cursor-pointer md:text-base outline-header_text"
+                            formControlName="leaveType">
+                            <option *ngFor="let t of leaveTypes" class="bg-white" value="{{t.id}}">{{t.type}}</option>
+                        </select>
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="startDate" class="text-form_label">Start Date</label>
+                        <input type="date" formControlName="startDate"
+                            class="text-header_text outline-header_text w-full">
+                    </span>
+                    <span class="flex flex-col gap-2 w-full">
+                        <label for="endDate" class="text-form_label">End Date</label>
+                        <input type="date" formControlName="endDate"
+                            class="text-header_text outline-header_text w-full">
+                    </span>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div class=" w-full flex justify-end gap-3">
+        <button
+            class="border border-primary-dark text-primary-dark py-1 px-5 h-fit text-sm bg-white active:text-white active:bg-primary-dark md:text-base"
+            (click)="abort()">{{ action?.abort }}</button>
+        <button
+            class="border border-red-500 bg-red-500 active:text-red-500 text-white py-1 px-5 h-fit text-sm active:bg-white md:text-base"
+            (click)="submit()" *ngIf="submitBackground === 'update'">{{ action?.submit }}</button>
+
+        <button
+            class="border-primary-dark bg-primary-dark active:text-primary-dark text-white py-1 px-5 h-fit text-sm active:bg-white md:text-base"
+            (click)="submit()" *ngIf="submitBackground === 'delete'">{{ action?.submit }}</button>
+
+    </div>
+</div>
+
+<div class="fixed inset-0 bg-backdrop z-30" (click)="abort()"></div>

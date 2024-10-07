@@ -1,0 +1,45 @@
+<div class="flex flex-col w-full gap-10 text-sm md:text-base">
+    <div class="flex flex-col bg-white rounded-2xl p-8 gap-5">
+        <span class="flex gap-3 w-full justify-between">
+            <input type="text" placeholder="Search here..." class="md:w-6/12 p-2 text-sm rounded-full md:text-base md:py-2 md:px-4" [(ngModel)]="searchString" (keydown)="filter()" (keyup)="filter()">
+            <button class="py-2 px-6 bg-primary-dark rounded-full text-white border border-primary-dark active:bg-white active:text-primary-dark text-base" (click)="openForm()">New Branch</button>
+        </span>
+        <table>
+            <thead>
+                <tr>
+                    <th class="text-start text-primary-dark border-b p-2">No</th>
+                    <th class="text-start text-primary-dark border-b p-2">Name</th>
+                    <th class="text-start text-primary-dark border-b p-2">Address</th>
+                    <th class="text-start text-primary-dark border-b p-2 hidden md:table-cell">Date Added</th>
+                    <th class="text-start text-primary-dark border-b p-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-base">
+                <tr class="mb-3" *ngFor="let branch of displayedData">
+                    <td class="p-3 border-b border-1 ">{{branch.branch_number}}</td>
+                    <td class="p-3 border-b border-1 ">{{branch.name}}</td>
+                    <td class="p-3 border-b border-1 ">{{branch.location}}</td>
+                    <td class="p-3 border-b border-1 hidden md:table-cell">{{branch.created_at | date:"d MMM y"}}</td>
+                    <td class="p-3 border-b border-1 ">
+                        <img src="../../../../../assets/ellipsis-horizontal-outline.svg" alt="actions" class="w-5">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <app-paginator *ngIf="showPag" [totalItems]="branches.length" [pageSize]="pageSize"
+                [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+    </div>
+</div>
+
+<app-dual-row-form
+    *ngIf="showForm"
+    [title]="'Register Branch'"
+    [size]="'fit'"
+    [abort]="'Cancel'"
+    [submit]="'Register'"
+    (closeEvent)="close()"
+    (formValue)="regiterBranch($event)"
+    [formConfig]="formConfig"
+    [formTemplate]="registerBranchForm"
+>
+</app-dual-row-form>

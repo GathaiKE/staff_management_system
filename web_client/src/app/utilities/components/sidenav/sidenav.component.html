@@ -1,0 +1,43 @@
+<div class="flex-col justify-start items-start h-full w-fit p-6 hidden fixed text-nav_text md:flex">
+    <img src="../../../assets/logo.png" alt="LOGO" class="w-32 mb-6">
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('attendance/all')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('attendance/all') || activeRoute('attendance/on-time') || activeRoute('attendance/late') || activeRoute('attendance/on-leave') || activeRoute('attendance/absent')}" *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+        <img src="../../../../assets/attendance.png" alt="Attendance" class="w-6 h-6">
+        <span class="">Attendance</span>
+    </span>
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('admins')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('admins/assistant/all') || activeRoute('admins/assistant/active') || activeRoute('admins/assistant/inactive') || activeRoute('admins/client/all') || activeRoute('admins/client/active') || activeRoute('admins/client/inactive') || activeRoute('admins/branch/all') || activeRoute('admins/branch/active') || activeRoute('admins/branch/inactive') || activeRoute('admins/building/all') || activeRoute('admins/building/active') || activeRoute('admins/building/inactive')}"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin || user?.is_assistant_superadmin || user?.is_superuser">
+        <img src="../../../../assets/admins.png" alt="Dashboard" class="w-6 h-6">
+        <span class="">Admins</span>
+    </span>
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" [routerLink]="['/shifts/company-shifts']" [ngClass]="{'text-primary-dark bg-primary-light': activeRoute('shifts/company-shifts') || activeRoute('shifts/user-shifts')}"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+        <img src="../../../../assets/shifts.png" alt="Shifts" class="w-6 h-6">
+        <span class="">Shifts</span>
+    </span>
+    <!-- <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('payments')" [ngClass]="{'text-primary-dark bg-primary-light': activeRoute('payments')}">
+        <img src="../../../../assets/payment.png" alt="Shifts" class="w-6 h-6">
+        <span class="">Payments</span>
+    </span> -->
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('organizations/all')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('organizations/all') || activeRoute('organizations/active') || activeRoute('organizations/inactive') || activeRoute('organization/branches') || activeRoute('organization/buildings') || activeRoute('organization/payment-history') || activeRoute('organization')}"  *ngIf="user?.is_assistant_superadmin || user?.is_superuser">
+        <img src="../../../../assets/companies.png" alt="Organizations" class="w-6 h-6">
+        <span class="">Clients</span>
+    </span>
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('my-company/branches')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('my-company/branches') || activeRoute('my-company/buildings') || activeRoute('my-company/payment-history')}"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+        <img src="../../../../assets/company.png" alt="Organizations" class="w-6 h-6">
+        <span class="">My Company</span>
+    </span>
+    <span class="flex gap-3  items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('staff/all-staff')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('staff/all-staff') || activeRoute('staff/on-leave') || activeRoute('staff/active') || activeRoute('staff/suspended') || activeRoute('user') || activeRoute('user/leaves') || activeRoute('user/shifts')}"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+        <img src="../../../../assets/staff.png" alt="Staff" class="w-6 h-6">
+        <span class="">Staff</span>
+    </span>
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('leaves')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('leaves/requests/pending') || activeRoute('leaves/requests/approved') || activeRoute('leaves/requests/rejected') || activeRoute('leaves/types')}"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+        <img src="../../../../assets/leave.png" alt="Leaves" class="w-6 h-6">
+        <span class="">Leaves</span>
+    </span>
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="navigate('news')" [ngClass]="{'text-primary-dark bg-primary-light':activeRoute('news/news') || activeRoute('news/memos')}"  *ngIf="user?.is_organizationadmin || user?.is_buildingadmin || user?.is_branchadmin">
+        <img src="../../../../assets/news.png" alt="News and memos" class="w-6 h-6">
+        <span class="">News & Memos</span>
+    </span>
+    <span class="flex gap-3 items-center hover:cursor-pointer p-2 hover:bg-primary-light w-full" (click)="logOut()">
+        <img src="../../../../assets/logout_icon.png" alt="Dashboard" class="w-6 h-6">
+        <span class="">Log out</span>
+    </span>    
+</div>

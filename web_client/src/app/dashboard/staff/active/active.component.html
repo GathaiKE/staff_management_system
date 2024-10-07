@@ -1,0 +1,43 @@
+<div class="flex flex-col gap-2 h-full w-full bg-white rounded-xl p-2 md:py-2 md:px-4">
+    <span class="w-full p-3 text-sm">
+        <input type="p-2 rounded-lg" placeholder="Search here" (keyup)="filter()" (keydown)="filter()" [(ngModel)]="searchString">
+    </span>
+
+    <table class="text-base md:text-md">
+        <thead>
+            <tr class="">
+                <th class="text-start text-header_text border-b p-2">Staff No</th>
+                <th class="text-start text-header_text border-b p-2">First Name</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Middle Name</th>
+                <th class="text-start text-header_text border-b p-2">Last Name</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Email</th>
+                <th class="text-start text-header_text border-b p-2 hidden md:table-cell">Department</th>
+                <th class="text-start text-header_text border-b p-2">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="text-base">
+            <tr class="mb-3" *ngFor="let staff of displayedData">
+                <td class="p-3 border-b border-1">{{staff.staff_number}}</td>
+                <td class="p-3 border-b border-1">{{staff.first_name}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{staff.middle_name}}</td>
+                <td class="p-3 border-b border-1">{{staff.last_name}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{staff.email}}</td>
+                <td class="p-3 border-b border-1 hidden md:table-cell">{{staff.staff_department}}</td>
+                <td class="p-3 border-b border-1 relative">
+                    <button (click)="getDetails(staff)"><img src="../../../../assets/ellipsis-horizontal-outline.svg" matTooltip="Details" alt="" class="h-5 w-5 cursor-pointer"></button>
+                </td>
+            </tr>
+            <tr *ngIf="displayedData.length === 0 && !showSpinner">
+               <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+            </tr>
+            <tr  *ngIf="showSpinner" class="p-5 text-center">
+                <td colspan="10" class="text-start p-5">
+                    <app-spinner [text]="'Loading'"></app-spinner>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <app-paginator *ngIf="showPag" [totalItems]="staffData.length" [pageSize]="pageSize"
+                [currentPage]="currentPage" (pageChange)="onPageChange($event)" />
+</div>

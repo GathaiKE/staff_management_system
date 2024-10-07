@@ -1,0 +1,48 @@
+<div class="flex flex-col gap-6 w-full bg-white rounded-xl p-6 text-sm md:text-base">
+    <span class="flex flex-col w-full items-end">
+        <span class="flex justify-start flex-col gap-2" *ngIf="displayedData?.length !== 0">
+            <label for="date" class="text-primary-dark text-start">Filter By Date</label>
+            <input type="date" class="outline-header_text text-header_text" placeholder="mm/dd/yyyy">
+        </span>
+    </span>
+    <table class="">
+        <thead class="mb-3">
+            <tr class="text-header_text border-b-2">
+                <th class="text-start">Work Role</th>
+                <th class="text-start hidden md:table-cell">Start Date</th>
+                <th class="text-start hidden md:table-cell">End Date</th>
+                <th class="text-start">Start Time</th>
+                <th class="text-start">End Time</th>
+                <th class="text-start hidden md:table-cell">Repeats</th>
+                <th class="text-start hidden md:table-cell">Days</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="" *ngFor="let shift of shifts">
+                <td>{{shift.shift.type}}</td>
+                <td class=" hidden md:table-cell">{{shift.shift.start_date | date:'d MMM y'}}</td>
+                <td class=" hidden md:table-cell">{{shift.shift.end_date | date:'d MMM y'}}</td>
+                <td>{{shift.shift.start_time}}</td>
+                <td>{{shift.shift.end_time}}</td>
+                <td class="hidden md:table-cell">{{shift.shift.repeat}}</td>
+                <td class="gap-2 items-center hidden md:flex">
+                    <span class="px-1 h-fit text-base rounded bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('sun')}">S</span>
+                    <span class="px-1 h-fit text-base rounded  bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('mon')}">M</span>
+                    <span class="px-1 h-fit text-base rounded  bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('tue')}">T</span>
+                    <span class="px-1 h-fit text-base rounded bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('wed')}">W</span>
+                    <span class="px-1 h-fit text-base rounded bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('thu')}">T</span>
+                    <span class="px-1 h-fit text-base rounded bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('fri')}">F</span>
+                    <span class="px-1 h-fit text-base rounded bg-primary-light text-primary-dark" [ngClass]="{'bg-gray-400 text-white': shift.shift.days.includes('sat')}">S</span>
+                </td>
+            </tr>
+            <tr *ngIf="displayedData.length === 0 && !showSpinner">
+               <td colspan="10" class="text-start p-5"> <p class="font-semibold">{{noRecords}}</p></td>
+            </tr>
+            <tr  *ngIf="showSpinner" class="p-5 text-center">
+                <td colspan="10" class="text-start p-5">
+                    <app-spinner [text]="'Loading'"></app-spinner>
+                </td>
+            </tr>
+        </tbody>
+    </table>    
+</div>

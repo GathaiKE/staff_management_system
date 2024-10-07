@@ -1,0 +1,83 @@
+<div class="flex flex-row">
+    <app-sidenav></app-sidenav>
+    <div class="flex flex-col w-full md:ml-60 min-h-screen">
+        <app-header></app-header>
+        <div class="flex flex-col gap-4 w-full h-full bg-primary-light p-3 text-base md:p-5">
+            <span class="w-full h-fit items-center rounded-lg p-2 bg-white flex flex-col gap-3 md:flex-row md:p-3">
+                <span class="bg-primary-light rounded-full justify-center items-center p-4 w-fit hidden md:flex">
+                    <img src="../../../assets/Calendar.png" alt="Calender" class="w-6 h-6">
+                </span>
+                <span class="h-full w-full flex flex-col gap-3 items-center">
+                    <span class="md:text-md self-start">Attendance</span>
+                    <span class="text-primary-dark text-sm self-start md:text-base">Keep track of employee attendance on
+                        daily basis</span>
+                </span>
+            </span>
+            <div class="flex flex-col w-full gap-2">
+                <div class="flex flex-col gap-3 w-full">
+                    <span class="flex flex-col gap-3 text-sm md:flex-row md:flex-nowrap md:text-base">
+                        <span class="flex flex-col gap-1">
+                            <label for="date">Date</label>
+                            <input type="date" class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-sm py-2 px-4 w-full cursor-pointer md:w-fit md:text-base" [(ngModel)]="dateFilter" (change)="filterByDate($event)">
+                        </span>
+                        <span class="flex flex-col gap-1">
+                            <label for="branch">Branch</label>
+                            <select name="branch"
+                                class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-sm py-2 px-4 w-full cursor-pointer md:w-fit md:text-base" (change)="filterByBranch($event)">
+                                <option value="" class="bg-white">All Records</option>
+                                <option *ngFor="let branch of branches" class="bg-white" value="{{branch.id}}">{{branch.name}}</option>
+                            </select>
+                        </span>
+                        <!-- <span class="flex flex-col gap-1">
+                            <label for="building">Building</label>
+                            <select name="building"
+                                class="flex flex-row gap-2 rounded-lg bg-white text-header_text text-sm py-2 px-4 w-full cursor-pointer md:w-fit md:text-base">
+                                <option value="" class="bg-white">Building A</option>
+                                <option value="" class="bg-white">Building B</option>
+                            </select>
+                        </span> -->
+                        <span class="flex items-end">
+                            <button
+                                class="flex flex-row gap-2 rounded-lg bg-nav_text text-sm py-2 px-4 w-full border border-primary-dark cursor-pointer md:w-fit md:text-base active:text-primary-dark active:bg-white" (click)="exportCheckinRecords()">
+                                <img src="../../../assets/Export.png" alt="" class="w-4 h-4">
+                                <span>Export Report</span>
+                            </button>
+                        </span>
+                    </span>
+                    <span class="w-full flex items-center justify-start p-2">
+                        <span class="text-md text-welcome">{{displayDatePretext}}, {{today | date:'d MMM y'}}</span>
+                    </span>
+                    <span class="text-base flex flex-row gap-3">
+                        <span class="p-3 bg-white rounded-2xl w-32 flex flex-col gap-1 items-center" [ngClass]="{'bg-primary-light border border-header_text':activeRoute('attendance/all')}"
+                        (click)="navigate('attendance/all')">
+                            <p class="w-fit text-base text-header_text text-center">Total Entries</p>
+                            <p class='w-fit text-md font-bold text-center'>{{totalCheckins}}</p>
+                        </span>
+                        <!-- <span
+                            class="p-3 bg-white rounded-2xl w-32 flex flex-col gap-1 items-center"[ngClass]="{'bg-primary-light border border-header_text':activeRoute('attendance/on-time')}"
+                            (click)="navigate('attendance/on-time')">
+                            <p class="w-fit text-base text-header_text text-center">On Time</p>
+                            <p class='w-fit text-md font-bold text-center'>{{totalOntime}}</p>
+                        </span>
+                        <span class="flex p-3 bg-white rounded-2xl w-32 flex-col gap-1 items-center"[ngClass]="{'bg-primary-light border border-header_text':activeRoute('attendance/late')}"
+                        (click)="navigate('attendance/late')">
+                            <p class="w-fit text-base text-header_text text-center">Late In</p>
+                            <p class='w-fit text-md font-bold text-center'>{{totalLate}}</p>
+                        </span> -->
+                        <!-- <span class="hidden p-3 bg-white rounded-2xl w-32 flex-col gap-1 items-center md:flex"[ngClass]="{'bg-primary-light border border-header_text':activeRoute('attendance/absent')}"
+                        (click)="navigate('attendance/absent')">
+                            <p class="w-fit text-base text-header_text text-center">Absent</p>
+                            <p class='w-fit text-md font-bold text-center'>9</p>
+                        </span>
+                        <span class="hidden p-3 bg-white rounded-2xl w-32 flex-col gap-1 items-center md:flex"[ngClass]="{'bg-primary-light border border-header_text':activeRoute('attendance/on-leave')}"
+                        (click)="navigate('attendance/on-leave')">
+                            <p class="w-fit text-base text-header_text text-center">Time Off</p>
+                            <p class='w-fit text-md font-bold text-center'>17</p>
+                        </span> -->
+                    </span>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
